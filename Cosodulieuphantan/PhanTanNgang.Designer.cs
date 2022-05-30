@@ -167,6 +167,7 @@
             // 
             // combo_table
             // 
+            this.combo_table.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_table.FormattingEnabled = true;
             this.combo_table.Location = new System.Drawing.Point(352, 55);
             this.combo_table.Name = "combo_table";
@@ -219,12 +220,13 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "PHÂN TÁN";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txt_query);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(892, 45);
+            this.groupBox2.Location = new System.Drawing.Point(892, 29);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(286, 518);
             this.groupBox2.TabIndex = 15;

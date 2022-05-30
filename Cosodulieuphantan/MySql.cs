@@ -33,7 +33,7 @@ namespace Cosodulieuphantan
         private void Initialize(string uid, string password)
         {
             server = "25.7.45.184";
-            database = "demo1";
+            database = "quanlyhaisan";
             uid = uid;
             password = password;
             port = "3306";
@@ -50,16 +50,11 @@ namespace Cosodulieuphantan
             DataTable dt = new DataTable();
             returnVal.Fill(dt);           
             return dt;
-            //MySqlDataReader reader = cmd.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    combo.Items.Add(reader.GetString(getColumn));
-            //}
         }
         private void Initialize()
         {
             server = "25.7.45.184";
-            database = "demo1";
+            database = "quanlyhaisan";
             uid = "tienthanh";
             password = "123456";
             port = "3306";

@@ -18,7 +18,7 @@ namespace Cosodulieuphantan
         //constructor
         public Connection(string User, string password)
         {
-            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=Test;User ID=" + User + ";Password=" + password + ";";
+            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=QLHS;User ID=" + User + ";Password=" + password + ";";
             conn = new SqlConnection(strConn);
             cmd = null;
             drd = null;
@@ -26,7 +26,7 @@ namespace Cosodulieuphantan
         }
         public Connection()
         {
-            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=Test;User ID=sa;Password=123456;";
+            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=QLHS;User ID=sa;Password=123456;";
             conn = new SqlConnection(strConn);
             cmd = null;
             drd = null;
