@@ -26,7 +26,7 @@ namespace Cosodulieuphantan
         }
         public Connection()
         {
-            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=QLHS;User ID=sa;Password=123456;";
+            strConn = @"Data Source=DESKTOP-4RDJ30F;Initial Catalog=QLHS;User ID=phu;Password=123456;";
             conn = new SqlConnection(strConn);
             cmd = null;
             drd = null;
