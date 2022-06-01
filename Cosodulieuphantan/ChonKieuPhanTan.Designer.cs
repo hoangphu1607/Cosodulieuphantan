@@ -36,11 +36,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_mk = new System.Windows.Forms.TextBox();
             this.txt_tk = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.kieu_phan_tan = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.kieu_phan_tan.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -121,17 +121,18 @@
             this.txt_tk.Size = new System.Drawing.Size(353, 30);
             this.txt_tk.TabIndex = 9;
             // 
-            // groupBox1
+            // kieu_phan_tan
             // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(94, 288);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 100);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Kiểu Phân Tán";
+            this.kieu_phan_tan.Controls.Add(this.button3);
+            this.kieu_phan_tan.Controls.Add(this.button2);
+            this.kieu_phan_tan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kieu_phan_tan.Location = new System.Drawing.Point(94, 288);
+            this.kieu_phan_tan.Name = "kieu_phan_tan";
+            this.kieu_phan_tan.Size = new System.Drawing.Size(570, 100);
+            this.kieu_phan_tan.TabIndex = 2;
+            this.kieu_phan_tan.TabStop = false;
+            this.kieu_phan_tan.Text = "Kiểu Phân Tán";
+            this.kieu_phan_tan.Visible = false;
             // 
             // button3
             // 
@@ -159,14 +160,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.kieu_phan_tan);
             this.Controls.Add(this.groupBox2);
             this.Name = "ChonKieuPhanTan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChonKieuPhanTan";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.kieu_phan_tan.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -180,7 +181,7 @@
         private System.Windows.Forms.TextBox txt_mk;
         private System.Windows.Forms.TextBox txt_tk;
         private System.Windows.Forms.Button btn_test_conn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox kieu_phan_tan;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
     }

@@ -39,6 +39,7 @@ namespace Cosodulieuphantan
             if (conn.openConn())
             {
                 MessageBox.Show("Kết Nối Thành Công");
+                kieu_phan_tan.Visible = true;
             }
             else
             {
