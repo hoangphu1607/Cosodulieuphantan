@@ -39,12 +39,14 @@
             this.kieu_phan_tan = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.kieu_phan_tan.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btn_test_conn);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
@@ -75,9 +77,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(199, 61);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(204, 25);
+            this.label4.Size = new System.Drawing.Size(269, 25);
             this.label4.TabIndex = 14;
-            this.label4.Text = "TÊN SERVER Ở ĐÂY";
+            this.label4.Text = "DESKTOP-4RDJ30F | QLHS";
             // 
             // label3
             // 
@@ -154,6 +156,16 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(362, 192);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(152, 36);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Dữ Liệu Server";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // ChonKieuPhanTan
             // 
             this.AcceptButton = this.btn_test_conn;
@@ -184,5 +196,6 @@
         private System.Windows.Forms.GroupBox kieu_phan_tan;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

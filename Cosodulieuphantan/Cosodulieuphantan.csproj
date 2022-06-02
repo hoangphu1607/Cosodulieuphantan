@@ -242,6 +242,12 @@
       <DependentUpon>ChonKieuPhanTan.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="FormData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormData.Designer.cs">
+      <DependentUpon>FormData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +277,9 @@
     </Compile>
     <EmbeddedResource Include="ChonKieuPhanTan.resx">
       <DependentUpon>ChonKieuPhanTan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormData.resx">
+      <DependentUpon>FormData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

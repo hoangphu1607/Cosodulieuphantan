@@ -46,5 +46,11 @@ namespace Cosodulieuphantan
                 MessageBox.Show("Kết Nối Thất Bại");
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FormData formData = new FormData();
+            formData.Show();
+        }
     }
 }
