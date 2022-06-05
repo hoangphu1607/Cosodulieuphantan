@@ -135,19 +135,7 @@ namespace Cosodulieuphantan
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string value = columns.SelectedValue.ToString();
-            if(value.Equals("varchar(100)") || value.Equals("char(10)"))
-                MessageBox.Show("Chuỗi");
-            else
-                MessageBox.Show("Số");
-            //    foreach (DataGridViewRow row in dataGridView1.Rows)
-            //    {
-            //        foreach (DataGridViewCell cell in row.Cells)
-            //        {
-            //            value += cell.Value.ToString();
-
-            //        }               
-            //    }
+            
 
         }
 
@@ -177,19 +165,24 @@ namespace Cosodulieuphantan
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Connection con = new Connection();
-                con.openConn();
-                con.executeUpdate(txt_query.Text);
-                con.closeConn();
-                MessageBox.Show("Phân Tán Thành Công");
-            }
-            catch
-            {
-                MessageBox.Show("Phân Tán Thất Bại");
-            }
-            
+            //try
+            //{
+            Connection con = new Connection();
+            con.openConn();
+            con.executeUpdate(txt_query.Text);
+            con.closeConn();
+
+            con.openConn();
+            string conver = "select * into sp_cs FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.sp_cs WHERE quanlyhaisan.sp_cs.ID_COSO IN (SELECT ID_COSO FROM quanlyhaisan.coso)";
+            con.executeUpdate(conver);
+            con.closeConn();
+            MessageBox.Show("Phân Tán Thành Công");
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Phân Tán Thất Bại");
+            //}
+
         }
     }
 }

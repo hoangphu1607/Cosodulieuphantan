@@ -32,7 +32,7 @@ namespace Cosodulieuphantan
             DBConnect mysql = new DBConnect(uid,password);
             if (mysql.OpenConnection())
             {
-                MessageBox.Show("Kết Nối Thành Công");
+                MessageBox.Show("Kết Nối Với Máy Chủ "+label4.Text+" Thành Công");
                 this.Hide();
                 ChonKieuPhanTan formPhantan = new ChonKieuPhanTan();
                 formPhantan.Show();
