@@ -195,3 +195,4 @@ D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\bin\Debug\zh-Hans\Microsoft.
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.csproj.CopyComplete
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.FormData.resources
+D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.LienKet.resources

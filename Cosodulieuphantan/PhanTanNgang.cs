@@ -14,6 +14,7 @@ namespace Cosodulieuphantan
 {
     public partial class PhanTanNgang : Form
     {
+        public static string query;
         public static string first_text_query = "SELECT * INTO ";
         public static string end_text_query = " FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.";
         public PhanTanNgang()
@@ -105,13 +106,16 @@ namespace Cosodulieuphantan
             combo_table.DisplayMember = "Tables_in_quanlyhaisan";
             combo_table.ValueMember = "Tables_in_quanlyhaisan";
             combo_table.DataSource = mysql.LoadComboBox("SHOW tables");
+            
             mysql.CloseConnection();
 
+            
             string table = combo_table.SelectedValue.ToString();
+
             mysql.OpenConnection();
             columns.DisplayMember = "Field";
             columns.ValueMember = "Type";
-            columns.DataSource = mysql.LoadComboBox("DESCRIBE "+table+"");            
+            columns.DataSource = mysql.LoadComboBox("DESCRIBE "+table+"");           
             mysql.CloseConnection();
 
             txt_query.Text = first_text_query +table +end_text_query+ table+"')";
@@ -167,22 +171,47 @@ namespace Cosodulieuphantan
         {
             //try
             //{
-            Connection con = new Connection();
-            con.openConn();
-            con.executeUpdate(txt_query.Text);
-            con.closeConn();
+            query = txt_query.Text;
+            LienKet lienKet = new LienKet();
+            lienKet.Show();
 
-            con.openConn();
-            string conver = "select * into sp_cs FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.sp_cs WHERE quanlyhaisan.sp_cs.ID_COSO IN (SELECT ID_COSO FROM quanlyhaisan.coso)";
-            con.executeUpdate(conver);
-            con.closeConn();
-            MessageBox.Show("Phân Tán Thành Công");
+            //Connection con = new Connection();
+            //con.openConn();
+            //con.executeUpdate(txt_query.Text);
+            //con.closeConn();
+            //MessageBox.Show("Phân Tán Thành Công");
+
+
+            //con.openConn();
+            //string conver = "select * into sp_cs FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.sp_cs WHERE quanlyhaisan.sp_cs.ID_COSO IN (SELECT ID_COSO FROM quanlyhaisan.coso)";
+            //con.executeUpdate(conver);
+            //con.closeConn();
             //}
             //catch
             //{
             //    MessageBox.Show("Phân Tán Thất Bại");
             //}
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {            
+           
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void table_lk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void column_clk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
