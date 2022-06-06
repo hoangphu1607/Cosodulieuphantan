@@ -128,6 +128,11 @@ namespace Cosodulieuphantan
             }
             catch
             {
+                Connection con = new Connection();
+                con.openConn();
+                con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
+                con.closeConn();
+                
                 MessageBox.Show("Phân Tán Thất Bại");
             }
         }
