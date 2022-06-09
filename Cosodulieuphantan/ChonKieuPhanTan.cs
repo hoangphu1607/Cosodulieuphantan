@@ -12,6 +12,7 @@ namespace Cosodulieuphantan
 {
     public partial class ChonKieuPhanTan : Form
     {
+        public static string database;
         public ChonKieuPhanTan()
         {
             InitializeComponent();
@@ -39,7 +40,14 @@ namespace Cosodulieuphantan
             if (conn.openConn())
             {
                 MessageBox.Show("Kết Nối Thành Công");
-                kieu_phan_tan.Visible = true;
+                listDB.Visible = true;
+                conn.openConn();
+                listDB.DisplayMember = "name";
+                listDB.ValueMember = "name";
+                listDB.DataSource =  conn.loadDataTable("SELECT name FROM sys.databases;");
+                conn.closeConn();
+                label5.Visible = true;
+                button4.Visible = true;
             }
             else
             {
@@ -51,6 +59,52 @@ namespace Cosodulieuphantan
         {
             FormData formData = new FormData();
             formData.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Connection connect = new Connection();
+            connect.openConn();
+            DataTable dataTable = connect.loadDataTable("SELECT name FROM sys.databases;");
+            List<string> data = new List<string>();
+            data = dataTable.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("name")).ToList();
+            connect.closeConn();
+
+            int index = data.LastIndexOf(listDB.Text);
+            if (index == -1)
+            {
+                try
+                {
+                    kieu_phan_tan.Visible = true;
+                    database = listDB.Text;
+                    connect.openConn();
+                    connect.executeUpdate("CREATE DATABASE "+database+"");
+                    connect.closeConn();
+                    MessageBox.Show("Tạo database " + database + " thành công");
+                }
+                catch
+                {
+                    MessageBox.Show("Chọn Database Thất Bại");
+                }
+                
+            }
+            else
+            {
+                try
+                {
+                    kieu_phan_tan.Visible = true;
+                    database = listDB.Text;
+                }
+                catch
+                {
+                    MessageBox.Show("Chọn Database Thất Bại");
+                }
+            }
+        }
+
+        private void ChonKieuPhanTan_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

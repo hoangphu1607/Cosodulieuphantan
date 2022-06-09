@@ -25,7 +25,7 @@ namespace Cosodulieuphantan
                 conn.openConn();
                 combo_table.DisplayMember = "TABLE_NAME";
                 combo_table.ValueMember = "TABLE_NAME";
-                string sql = "SELECT TABLE_NAME FROM QLHS.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
+                string sql = "SELECT TABLE_NAME FROM "+ChonKieuPhanTan.database+".INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
                 combo_table.DataSource = conn.loadDataTable(sql);
                 conn.closeConn();
 

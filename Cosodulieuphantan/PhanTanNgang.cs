@@ -15,7 +15,7 @@ namespace Cosodulieuphantan
     public partial class PhanTanNgang : Form
     {
         public static string query;
-        public static string first_text_query = "SELECT * INTO ";
+        public static string first_text_query = "SELECT  * INTO ";
         public static string end_text_query = " FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.";
         public PhanTanNgang()
         {

@@ -116,8 +116,8 @@ namespace Cosodulieuphantan
                         select_table += list[2] + "." + data[i]+",";
                     }
                     connect.CloseConnection();
-                    que = "select "+ select_table + " into " + list[2] +" from OPENQUERY(ConnectLan, " +
-                        "'SELECT * FROM quanlyhaisan."+list[2]+ "') " + list[2] + "," + list[0] + " where " + list[0]+"."+ list[1] + " = "+list[2]+ "." + list[3] + "";
+                    que = "SELECT DISTINCT " + select_table + " into " + list[2] +" from OPENQUERY(ConnectLan, " +
+                        "'SELECT * FROM quanlyhaisan." + list[2]+ "') " + list[2] + "," + list[0] + " where " + list[0]+"."+ list[1] + " = "+list[2]+ "." + list[3] + "";
                     
                     con.openConn();
                     con.executeUpdate(que);
@@ -128,13 +128,18 @@ namespace Cosodulieuphantan
             }
             catch
             {
-                Connection con = new Connection();
-                con.openConn();
-                con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
-                con.closeConn();
-                
                 MessageBox.Show("Phân Tán Thất Bại");
+                //Connection con = new Connection();
+                //con.openConn();
+                //con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
+                //con.closeConn();               
+                
             }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

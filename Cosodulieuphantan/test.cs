@@ -229,7 +229,7 @@ namespace Cosodulieuphantan
                         {
                             value = cell.Value.ToString();
                             con.openConn();
-                            con.executeUpdate("SELECT * INTO " + table + " FROM OPENQUERY(ConnectLan, 'SELECT " + value + " FROM quanlyhaisan." + table + "')");
+                            con.executeUpdate("SELECT DISTINCT * INTO " + table + " FROM OPENQUERY(ConnectLan, 'SELECT " + value + " FROM quanlyhaisan." + table + "')");
                             con.closeConn();
                         }
                         else
