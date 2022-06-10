@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.listDB = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_test_conn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,9 +43,6 @@
             this.kieu_phan_tan = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.listDB = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.kieu_phan_tan.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,36 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Server Phân Tán";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(469, 245);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 33);
+            this.button4.TabIndex = 18;
+            this.button4.Text = "Chọn";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // listDB
+            // 
+            this.listDB.FormattingEnabled = true;
+            this.listDB.Location = new System.Drawing.Point(236, 245);
+            this.listDB.Name = "listDB";
+            this.listDB.Size = new System.Drawing.Size(191, 33);
+            this.listDB.TabIndex = 17;
+            this.listDB.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(59, 248);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(149, 25);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Chọn Database";
+            this.label5.Visible = false;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(362, 192);
@@ -91,11 +121,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(199, 61);
+            this.label4.Location = new System.Drawing.Point(181, 61);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(269, 25);
+            this.label4.Size = new System.Drawing.Size(340, 25);
             this.label4.TabIndex = 14;
-            this.label4.Text = "DESKTOP-4RDJ30F | QLHS";
+            this.label4.Text = "DESKTOP-4RDJ30F | SQL SERVER";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -171,36 +202,6 @@
             this.button2.Text = "Phân Tán Ngang";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 248);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(149, 25);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Chọn Database";
-            this.label5.Visible = false;
-            // 
-            // listDB
-            // 
-            this.listDB.FormattingEnabled = true;
-            this.listDB.Location = new System.Drawing.Point(236, 245);
-            this.listDB.Name = "listDB";
-            this.listDB.Size = new System.Drawing.Size(191, 33);
-            this.listDB.TabIndex = 17;
-            this.listDB.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(469, 245);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 33);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Chọn";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // ChonKieuPhanTan
             // 

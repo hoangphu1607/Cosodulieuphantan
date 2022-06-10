@@ -15,6 +15,8 @@ namespace Cosodulieuphantan
     public partial class PhanTanNgang : Form
     {
         public static string query;
+        public static string GetTable;
+        public static string GetColumn;
         public static string first_text_query = "SELECT  * INTO ";
         public static string end_text_query = " FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan.";
         public PhanTanNgang()
@@ -60,6 +62,8 @@ namespace Cosodulieuphantan
             int count = dataGridView1.Rows.Count;
             string value = "";
             string table = combo_table.SelectedValue.ToString();
+            GetTable = table;
+            GetColumn = Column;
             txt_query.Text = first_text_query + table + end_text_query + table +" WHERE ";  
             
             foreach (DataGridViewRow row in dataGridView1.Rows)

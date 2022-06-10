@@ -202,7 +202,7 @@ namespace Cosodulieuphantan
                     column_select += ", "+get_column_key[i].ToString();
                 }
             }
-            MessageBox.Show(column_select);
+            //MessageBox.Show(column_select);
             dataGridView3.Rows.Add(table, column_select);
         }
 
@@ -245,10 +245,10 @@ namespace Cosodulieuphantan
             }
             catch
             {
-                Connection con = new Connection();
-                con.openConn();
-                con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
-                con.closeConn();
+                //Connection con = new Connection();
+                //con.openConn();
+                //con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
+                //con.closeConn();
                 MessageBox.Show("Phân Tán Thất Bại Rồi");
             }
 

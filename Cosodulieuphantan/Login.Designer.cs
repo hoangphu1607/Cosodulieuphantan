@@ -38,16 +38,16 @@ namespace Cosodulieuphantan
             this.bnt_thoat = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_tk
             // 
-            this.txt_tk.Location = new System.Drawing.Point(202, 170);
+            this.txt_tk.Location = new System.Drawing.Point(335, 175);
             this.txt_tk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_tk.Name = "txt_tk";
             this.txt_tk.Size = new System.Drawing.Size(242, 30);
@@ -55,7 +55,7 @@ namespace Cosodulieuphantan
             // 
             // txt_mk
             // 
-            this.txt_mk.Location = new System.Drawing.Point(202, 210);
+            this.txt_mk.Location = new System.Drawing.Point(335, 215);
             this.txt_mk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_mk.Name = "txt_mk";
             this.txt_mk.Size = new System.Drawing.Size(242, 30);
@@ -65,7 +65,7 @@ namespace Cosodulieuphantan
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 44);
+            this.label1.Location = new System.Drawing.Point(150, 49);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 25);
@@ -76,7 +76,7 @@ namespace Cosodulieuphantan
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 173);
+            this.label2.Location = new System.Drawing.Point(151, 178);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 25);
@@ -86,7 +86,7 @@ namespace Cosodulieuphantan
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 210);
+            this.label3.Location = new System.Drawing.Point(151, 215);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 25);
@@ -95,7 +95,7 @@ namespace Cosodulieuphantan
             // 
             // btn_dangnhap
             // 
-            this.btn_dangnhap.Location = new System.Drawing.Point(34, 265);
+            this.btn_dangnhap.Location = new System.Drawing.Point(167, 270);
             this.btn_dangnhap.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_dangnhap.Name = "btn_dangnhap";
             this.btn_dangnhap.Size = new System.Drawing.Size(176, 59);
@@ -107,7 +107,7 @@ namespace Cosodulieuphantan
             // bnt_thoat
             // 
             this.bnt_thoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bnt_thoat.Location = new System.Drawing.Point(263, 265);
+            this.bnt_thoat.Location = new System.Drawing.Point(396, 270);
             this.bnt_thoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bnt_thoat.Name = "bnt_thoat";
             this.bnt_thoat.Size = new System.Drawing.Size(146, 59);
@@ -120,7 +120,7 @@ namespace Cosodulieuphantan
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(163, 44);
+            this.label4.Location = new System.Drawing.Point(296, 49);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(246, 25);
@@ -143,42 +143,10 @@ namespace Cosodulieuphantan
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(69, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(493, 364);
+            this.groupBox1.Size = new System.Drawing.Size(676, 364);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 90);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 25);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "TÊN DB";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 132);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "HỆ QUẢN TRỊ";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "quanlyhaisan"});
-            this.comboBox1.Location = new System.Drawing.Point(202, 90);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(167, 33);
-            this.comboBox1.TabIndex = 11;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.groupBox1.Text = "MÁY CHỦ";
             // 
             // comboBox2
             // 
@@ -186,10 +154,42 @@ namespace Cosodulieuphantan
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "MY SQL"});
-            this.comboBox2.Location = new System.Drawing.Point(202, 129);
+            this.comboBox2.Location = new System.Drawing.Point(335, 134);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(167, 33);
             this.comboBox2.TabIndex = 12;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "quanlyhaisan"});
+            this.comboBox1.Location = new System.Drawing.Point(335, 95);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(167, 33);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(150, 137);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "HỆ QUẢN TRỊ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(151, 95);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 25);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "TÊN DB";
             // 
             // Login
             // 
