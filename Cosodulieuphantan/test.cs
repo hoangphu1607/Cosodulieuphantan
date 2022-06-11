@@ -240,6 +240,50 @@ namespace Cosodulieuphantan
                     }
                     list.Clear();
                 }
+                string PrimaryKey = "SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan' AND COLUMN_KEY = 'PRI';";
+                con.openConn();
+                DataTable Pri = con.loadDataTable(PrimaryKey);
+                List<string> data_ListKey = new List<string>();
+                data_ListKey = Pri.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("TABLE_NAME")).ToList();
+
+                con.closeConn();
+                string checkColumn = "";
+                foreach (DataRow row in Pri.Rows)
+                {
+                    try
+                    {
+                        con.openConn();
+                        con.executeUpdate("ALTER TABLE " + row["TABLE_NAME"] + " alter column " + row["COLUMN_NAME"] + " int not null");
+                        con.closeConn();
+
+                        //con.openConn();
+                        //con.executeUpdate("ALTER TABLE " + PhanTanNgang.GetTable + " ADD PRIMARY KEY (" + primaryKey1 + ")");
+                        //con.closeConn();
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                string comboForeignKey = "SELECT TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE " +
+                "WHERE REFERENCED_TABLE_SCHEMA = 'quanlyhaisan' ";
+                connect.OpenConnection();
+                DataTable dt = connect.LoadComboBox(comboForeignKey);
+                connect.CloseConnection();
+                foreach (DataRow row in dt.Rows)
+                {
+                    try
+                    {
+                        string Fokey = "ALTER TABLE " + row["TABLE_NAME"].ToString() + " ADD FOREIGN KEY (" + row["COLUMN_NAME"].ToString() + ") REFERENCES " + row["REFERENCED_TABLE_NAME"] + "(" + row["REFERENCED_COLUMN_NAME"].ToString() + "); ";
+                        //MessageBox.Show(Fokey);
+                        con.openConn();
+                        con.executeUpdate(Fokey);
+                        con.closeConn();
+                    }
+                    catch
+                    {
+                    }
+                }
                 MessageBox.Show("Phân Tán Thành Công Rồi");
 
             }

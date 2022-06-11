@@ -192,84 +192,36 @@ namespace Cosodulieuphantan
                         {
                             primaryKey += data_ListTable[i];
                         }
-                    con.openConn();
-                    con.executeUpdate("ALTER TABLE " + list[2] + " alter column " + data_ListTable[i] + " int not null");
-                    con.closeConn();
-                }
-                    con.openConn();
-                    con.executeUpdate("ALTER TABLE " + list[2] +" ADD PRIMARY KEY ("+primaryKey+")");
-                    con.closeConn();
-                    //MessageBox.Show(que);
-                    list.Clear();
-                }
-                    string combo_table = "SELECT TABLE_NAME " +
-                                "FROM QLHS.INFORMATION_SCHEMA.TABLES " +
-                                "WHERE TABLE_TYPE = 'BASE TABLE'";
-                    con.openConn();
-                    DataTable ListTableInSQL = con.loadDataTable(combo_table);
-                    List<string> data_ListTableInSQL = new List<string>();
-                    data_ListTableInSQL = ListTableInSQL.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("TABLE_NAME")).ToList();
-                    con.closeConn();
-                    
-                    for(int i =0;i< data_ListTableInSQL.Count; i++)
-                    {
-                        //column
-                        connect.OpenConnection();
-                        DataTable ListTableInMYSQL = connect.LoadComboBox("select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = '" + data_ListTableInSQL[i] + "';");
-                        List<string> data_ListTableInMySQL = new List<string>();
-                        data_ListTableInMySQL = ListTableInMYSQL.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("COLUMN_NAME")).ToList();
-                        connect.CloseConnection();
-                        //key
-                        connect.OpenConnection();
-                        DataTable ListKeyInMYSQL = connect.LoadComboBox("select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = '" + data_ListTableInSQL[i] + "';");
-                        List<string> data_ListKeyTableInMySQL = new List<string>();
-                        data_ListKeyTableInMySQL = ListKeyInMYSQL.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("CONSTRAINT_NAME")).ToList();
-                        connect.CloseConnection();
-                        //cot khoa ngoai
-                        connect.OpenConnection();
-                        DataTable REFERENCED_COLUMN_NAME = connect.LoadComboBox("select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = '" + data_ListTableInSQL[i] + "';");
-                        List<string> data_REFERENCED_COLUMN_NAME = new List<string>();
-                        data_REFERENCED_COLUMN_NAME = REFERENCED_COLUMN_NAME.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("REFERENCED_COLUMN_NAME")).ToList();
-                        connect.CloseConnection();
-                        //bang chua khoa ngoai
-                        connect.OpenConnection();
-                        DataTable REFERENCED_TABLE_NAME = connect.LoadComboBox("select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = '" + data_ListTableInSQL[i] + "';");
-                        List<string> data_REFERENCED_TABLE_NAME = new List<string>();
-                        data_REFERENCED_TABLE_NAME = REFERENCED_TABLE_NAME.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("REFERENCED_TABLE_NAME")).ToList();
-                        connect.CloseConnection();
-                        int vitri = data_ListKeyTableInMySQL.LastIndexOf("PRIMARY");
-                if(vitri != data_ListKeyTableInMySQL.Count - 1)
-                {
-                    for (int j = vitri + 1; j < data_ListKeyTableInMySQL.Count; j++)
-                    {
                         con.openConn();
-                        con.executeUpdate("ALTER TABLE " + list[2] + " add foreign key (" + data_ListTableInMySQL[j] + ") references "+ data_REFERENCED_TABLE_NAME[j] + "("+ data_REFERENCED_COLUMN_NAME[j] + ")");
+                        con.executeUpdate("ALTER TABLE " + list[2] + " alter column " + data_ListTable[i] + " int not null");
                         con.closeConn();
                     }
+                        con.openConn();
+                        con.executeUpdate("ALTER TABLE " + list[2] +" ADD PRIMARY KEY ("+primaryKey+")");
+                        con.closeConn();
+                        //MessageBox.Show(que);                      
+                list.Clear();
+            }
+            string  comboForeignKey = "SELECT TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE " +
+                "WHERE REFERENCED_TABLE_SCHEMA = 'quanlyhaisan' ";
+            connect.OpenConnection();
+            DataTable dt = connect.LoadComboBox(comboForeignKey);
+            connect.CloseConnection();
+            foreach (DataRow row in dt.Rows)
+            {
+                try
+                {
+                    string Fokey = "ALTER TABLE " + row["TABLE_NAME"].ToString() + " ADD FOREIGN KEY (" + row["COLUMN_NAME"].ToString() + ") REFERENCES " + row["REFERENCED_TABLE_NAME"] + "(" + row["REFERENCED_COLUMN_NAME"].ToString() + "); ";
+                    //MessageBox.Show(Fokey);
+                    con.openConn();
+                    con.executeUpdate(Fokey);
+                    con.closeConn();
                 }
-                        
-                        
-                    }
+                catch
+                {
+                }                
+            }
             MessageBox.Show("Phân Tán Thành Công");
-        //}
-        //    catch (Exception ex)
-        //    {
-                
-        //        MessageBox.Show("Phân Tán Thất Bại");
-        //        string combo_table = "SELECT TABLE_NAME " +
-        //            "FROM QLHS.INFORMATION_SCHEMA.TABLES " +
-        //            "WHERE TABLE_TYPE = 'BASE TABLE'";
-        //        Connection con = new Connection();
-        //        con.openConn();
-        //        DataTable ListTable = con.loadDataTable(combo_table);
-        //        List<string> data_ListTable = new List<string>();
-        //        data_ListTable = ListTable.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("TABLE_NAME")).ToList();
-        //        con.closeConn();
-        //        for(int i = 0;i < data_ListTable.Count; i++)
-        //        {
-        //            string alter = "DROP TABLE " + data_ListTable[i] +"";
-        //        }
-        //    }
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
