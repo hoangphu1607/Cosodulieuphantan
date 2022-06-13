@@ -151,18 +151,23 @@ namespace Cosodulieuphantan
 
         private void dataGridView2_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                string content = "";
-                //Lưu lại dòng dữ liệu vừa kích chọn
-                for(int i =0; i< dataGridView2.Rows.Count; i++)
+                if (e.RowIndex >= 0)
                 {
-                    DataGridViewRow row = this.dataGridView2.Rows[i];
-                    content += row.Cells[0].Value.ToString() +", ";
+                    string content = "";
+                    //Lưu lại dòng dữ liệu vừa kích chọn
+                    for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                    {
+                        DataGridViewRow row = this.dataGridView2.Rows[i];
+                        content += row.Cells[0].Value.ToString() + ", ";
+                    }
+                    column_select = content.Remove(content.Length - 2);
                 }
-                column_select = content.Remove(content.Length - 2);
+                string table = combo_table.SelectedValue.ToString();
             }
-            string table = combo_table.SelectedValue.ToString();
+            catch { }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -213,7 +218,7 @@ namespace Cosodulieuphantan
 
         private void button6_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 Connection con = new Connection();
                 DBConnect connect = new DBConnect();
@@ -240,13 +245,14 @@ namespace Cosodulieuphantan
                     }
                     list.Clear();
                 }
-                string PrimaryKey = "SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan' AND COLUMN_KEY = 'PRI';";
-                con.openConn();
-                DataTable Pri = con.loadDataTable(PrimaryKey);
+
+                //tạo not null
+                string PrimaryKey = "SELECT TABLE_NAME,COLUMN_NAME,COLUMN_KEY FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan'  and COLUMN_KEY = 'PRI'";
+                connect.OpenConnection();
+                DataTable Pri = connect.LoadComboBox(PrimaryKey);
                 List<string> data_ListKey = new List<string>();
                 data_ListKey = Pri.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("TABLE_NAME")).ToList();
-
-                con.closeConn();
+                connect.CloseConnection();
                 string checkColumn = "";
                 foreach (DataRow row in Pri.Rows)
                 {
@@ -256,13 +262,48 @@ namespace Cosodulieuphantan
                         con.executeUpdate("ALTER TABLE " + row["TABLE_NAME"] + " alter column " + row["COLUMN_NAME"] + " int not null");
                         con.closeConn();
 
-                        //con.openConn();
-                        //con.executeUpdate("ALTER TABLE " + PhanTanNgang.GetTable + " ADD PRIMARY KEY (" + primaryKey1 + ")");
-                        //con.closeConn();
                     }
                     catch
                     {
                     }
+                }
+                //tạo khóa chính
+                string selectTableinSql = "SELECT TABLE_NAME FROM " + ChonKieuPhanTan.database + ".INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
+                con.openConn();
+                DataTable tableInSql = con.loadDataTable(selectTableinSql);
+                con.closeConn();
+                try
+                {
+                    foreach (DataRow row in tableInSql.Rows)
+                    {
+                        string question = "SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan' and COLUMN_KEY = 'PRI' AND TABLE_NAME = '" + row["TABLE_NAME"].ToString() + "';";
+                        connect.OpenConnection();
+                        DataTable tableInMySQL = connect.LoadComboBox(question);
+                        connect.CloseConnection();
+
+                        string columnPrimary = "";
+                        int number = 1;
+                        foreach (DataRow rw in tableInMySQL.Rows)
+                        {
+                            if (number == 1)
+                            {
+                                columnPrimary += rw["COLUMN_NAME"].ToString();
+                                number++;
+                            }
+                            else
+                            {
+                                columnPrimary += ", " + rw["COLUMN_NAME"].ToString();
+                                number++;
+                            }
+                        }
+                        con.openConn();
+                        con.executeUpdate("ALTER TABLE " + row["TABLE_NAME"].ToString() + " ADD PRIMARY KEY (" + columnPrimary + ")");
+                        con.closeConn();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Đã Có Lỗi");
                 }
 
                 string comboForeignKey = "SELECT TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE " +
@@ -287,7 +328,7 @@ namespace Cosodulieuphantan
                 MessageBox.Show("Phân Tán Thành Công Rồi");
 
             }
-            catch
+            //catch
             {
                 //Connection con = new Connection();
                 //con.openConn();
