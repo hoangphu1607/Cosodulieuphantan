@@ -36,6 +36,8 @@ namespace Cosodulieuphantan
                 this.Hide();
                 ChonKieuPhanTan formPhantan = new ChonKieuPhanTan();
                 formPhantan.Show();
+                //ChonBang cb = new ChonBang();
+                //cb.Show();
             }
 
 

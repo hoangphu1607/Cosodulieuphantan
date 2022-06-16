@@ -196,3 +196,4 @@ D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\bin\Debug\zh-Hant\Microsoft.
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.csproj.CopyComplete
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.FormData.resources
 D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.LienKet.resources
+D:\Form_PhanTan\Cosodulieuphantan\Cosodulieuphantan\obj\Debug\Cosodulieuphantan.ChonBang.resources

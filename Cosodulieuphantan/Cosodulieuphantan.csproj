@@ -235,6 +235,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChonBang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChonBang.Designer.cs">
+      <DependentUpon>ChonBang.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChonKieuPhanTan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     <Compile Include="test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChonBang.resx">
+      <DependentUpon>ChonBang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChonKieuPhanTan.resx">
       <DependentUpon>ChonKieuPhanTan.cs</DependentUpon>
     </EmbeddedResource>

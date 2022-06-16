@@ -105,40 +105,40 @@ namespace Cosodulieuphantan
         private void PhanTanNgang_Load(object sender, EventArgs e)
         {
             DBConnect mysql = new DBConnect();
-            
-            mysql.OpenConnection();         
-            combo_table.DisplayMember = "Tables_in_quanlyhaisan";
-            combo_table.ValueMember = "Tables_in_quanlyhaisan";
-            combo_table.DataSource = mysql.LoadComboBox("SHOW tables");
-            
-            mysql.CloseConnection();
-
-            
-            string table = combo_table.SelectedValue.ToString();
 
             mysql.OpenConnection();
-            columns.DisplayMember = "Field";
-            columns.ValueMember = "Type";
-            columns.DataSource = mysql.LoadComboBox("DESCRIBE "+table+"");           
+            combo_table.DisplayMember = "Tables_in_quanlyhaisan";
+            combo_table.ValueMember = "Tables_in_quanlyhaisan";
+            combo_table.DataSource = mysql.LoadComboBox("SHOW TABLES");
+
             mysql.CloseConnection();
 
-            txt_query.Text = first_text_query +table +end_text_query+ table+"')";
 
-            bieuthuc.Items.Clear();
-            string value_column = columns.SelectedValue.ToString();
-            if (value_column.Equals("varchar(100)") || value_column.Equals("char(10)"))
-            {
-                bieuthuc.Items.Add("=");
-            }
-            else
-            {
-                bieuthuc.Items.Add("=");
-                bieuthuc.Items.Add(">");
-                bieuthuc.Items.Add(">=");
-                bieuthuc.Items.Add("<");
-                bieuthuc.Items.Add("<=");
-                bieuthuc.Items.Add("<>");
-            }
+            //string table = combo_table.SelectedValue.ToString();
+
+            //mysql.OpenConnection();
+            //columns.DisplayMember = "Field";
+            //columns.ValueMember = "Type";
+            //columns.DataSource = mysql.LoadComboBox("DESCRIBE "+table+"");           
+            //mysql.CloseConnection();
+
+            //txt_query.Text = first_text_query +table +end_text_query+ table+"')";
+
+            //bieuthuc.Items.Clear();
+            //string value_column = columns.SelectedValue.ToString();
+            //if (value_column.Equals("varchar(100)") || value_column.Equals("char(10)"))
+            //{
+            //    bieuthuc.Items.Add("=");
+            //}
+            //else
+            //{
+            //    bieuthuc.Items.Add("=");
+            //    bieuthuc.Items.Add(">");
+            //    bieuthuc.Items.Add(">=");
+            //    bieuthuc.Items.Add("<");
+            //    bieuthuc.Items.Add("<=");
+            //    bieuthuc.Items.Add("<>");
+            //}
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -216,6 +216,11 @@ namespace Cosodulieuphantan
         private void column_clk_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void bieuthuc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

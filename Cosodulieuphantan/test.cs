@@ -245,7 +245,29 @@ namespace Cosodulieuphantan
                     }
                     list.Clear();
                 }
+                //lấy các bảng đã có trong sql server
+                string BangTrongSQL = "SELECT TABLE_NAME FROM "+ChonKieuPhanTan.database+".INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
+                con.openConn();
+                DataTable BangCoTrongSQL = con.loadDataTable(BangTrongSQL);
+                List<string> data_BangTrongSQL = new List<string>();
+                data_BangTrongSQL = BangCoTrongSQL.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("TABLE_NAME")).ToList();
+                con.closeConn();
+                //lấy all bảng trong mysql
+                string BangTrongMySql = "SHOW TABLES";
+                connect.OpenConnection();
+                DataTable data_TableInMySQl = connect.LoadComboBox(BangTrongMySql);
+                connect.CloseConnection();
 
+                foreach(DataRow row in data_TableInMySQl.Rows)
+                {
+                    int index = data_BangTrongSQL.LastIndexOf(row["Tables_in_quanlyhaisan"].ToString());
+                    if(index == -1)
+                    {
+                        con.openConn();
+                        con.executeUpdate("SELECT DISTINCT * INTO " + row["Tables_in_quanlyhaisan"].ToString() + " FROM OPENQUERY(ConnectLan, 'SELECT * FROM quanlyhaisan." + row["Tables_in_quanlyhaisan"].ToString() + "')");
+                        con.closeConn();
+                    }
+                }
                 //tạo not null
                 string PrimaryKey = "SELECT TABLE_NAME,COLUMN_NAME,COLUMN_KEY FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan'  and COLUMN_KEY = 'PRI'";
                 connect.OpenConnection();
@@ -268,46 +290,83 @@ namespace Cosodulieuphantan
                     }
                 }
                 //tạo khóa chính
-                string selectTableinSql = "SELECT TABLE_NAME FROM " + ChonKieuPhanTan.database + ".INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
-                con.openConn();
-                DataTable tableInSql = con.loadDataTable(selectTableinSql);
-                con.closeConn();
+
+                string allTable = "SHOW TABLES";
+                connect.OpenConnection();
+                DataTable tableInMySql = connect.LoadComboBox(allTable);
+                connect.CloseConnection();
                 try
                 {
-                    foreach (DataRow row in tableInSql.Rows)
+                    foreach (DataRow row in tableInMySql.Rows)
                     {
-                        string question = "SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan' and COLUMN_KEY = 'PRI' AND TABLE_NAME = '" + row["TABLE_NAME"].ToString() + "';";
-                        connect.OpenConnection();
-                        DataTable tableInMySQL = connect.LoadComboBox(question);
-                        connect.CloseConnection();
+                        //string findKey = "select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME " +
+                        //"from information_schema.KEY_COLUMN_USAGE " +
+                        //"where TABLE_NAME = '" + row["Tables_in_quanlyhaisan"].ToString() + "';";
 
-                        string columnPrimary = "";
-                        int number = 1;
-                        foreach (DataRow rw in tableInMySQL.Rows)
+                        //string question = "SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'quanlyhaisan' and COLUMN_KEY = 'PRI' AND TABLE_NAME = '" + row["Tables_in_quanlyhaisan"].ToString() + "';";
+                        //connect.OpenConnection();
+                        //DataTable tableInMySQLKey = connect.LoadComboBox(question);
+                        //connect.CloseConnection();
+
+                        //string columnPrimary = "";
+                        //int number = 1;
+                        //foreach (DataRow rw in tableInMySQLKey.Rows)
+                        //{
+                        //    if (number == 1)
+                        //    {
+                        //        columnPrimary += rw["COLUMN_NAME"].ToString();
+                        //        number++;
+                        //    }
+                        //    else
+                        //    {
+                        //        columnPrimary += ", " + rw["COLUMN_NAME"].ToString();
+                        //        number++;
+                        //    }
+                        //}
+                        //con.openConn();
+                        //con.executeUpdate("ALTER TABLE " + row["Tables_in_quanlyhaisan"].ToString() + " ADD PRIMARY KEY (" + columnPrimary + ")");
+                        //con.closeConn();
+                        string findKey = "select DISTINCT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME " +
+                        "from information_schema.KEY_COLUMN_USAGE " +
+                        "where TABLE_NAME = '" + row["Tables_in_quanlyhaisan"].ToString() + "';";
+                        //tạo mảng có giá trị là cột của table được chọn phân tán
+                        connect.OpenConnection();
+                        DataTable ListTable = connect.LoadComboBox(findKey);
+                        List<string> data_ListTable = new List<string>();
+                        data_ListTable = ListTable.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("COLUMN_NAME")).ToList();
+                        connect.CloseConnection();
+                        //tạo mảng có giá trị là khóa của table được chọn phân tán (PRIMARY,...)
+                        connect.OpenConnection();
+                        DataTable ListKey = connect.LoadComboBox(findKey);
+                        List<string> CONSTRAINT_NAME = new List<string>();
+                        CONSTRAINT_NAME = ListKey.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("CONSTRAINT_NAME")).ToList();
+                        connect.CloseConnection();
+                        //tạo khóa chính
+                        int index = CONSTRAINT_NAME.LastIndexOf("PRIMARY"); // tìm vị trí cuối cùng của primary key trong mảng các cột 
+                        string primaryKey = "";
+                        for (int i = 0; i <= index; i++)
                         {
-                            if (number == 1)
+                            if (i == index && i != 0)
                             {
-                                columnPrimary += rw["COLUMN_NAME"].ToString();
-                                number++;
+                                primaryKey += ", " + data_ListTable[i];
                             }
                             else
                             {
-                                columnPrimary += ", " + rw["COLUMN_NAME"].ToString();
-                                number++;
+                                primaryKey += data_ListTable[i];
                             }
                         }
                         con.openConn();
-                        con.executeUpdate("ALTER TABLE " + row["TABLE_NAME"].ToString() + " ADD PRIMARY KEY (" + columnPrimary + ")");
+                        con.executeUpdate("ALTER TABLE " + row["Tables_in_quanlyhaisan"].ToString() + " ADD PRIMARY KEY (" + primaryKey + ")");
                         con.closeConn();
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Đã Có Lỗi");
+                    //MessageBox.Show("Đã Có Lỗi");
                 }
 
                 string comboForeignKey = "SELECT TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE " +
-                "WHERE REFERENCED_TABLE_SCHEMA = 'quanlyhaisan' ";
+                "WHERE REFERENCED_TABLE_SCHEMA = 'quanlyhaisan'";
                 connect.OpenConnection();
                 DataTable dt = connect.LoadComboBox(comboForeignKey);
                 connect.CloseConnection();
@@ -334,7 +393,7 @@ namespace Cosodulieuphantan
                 //con.openConn();
                 //con.executeUpdate("EXEC sp_MSforeachtable @command1 = 'DROP TABLE ? ''");
                 //con.closeConn();
-                MessageBox.Show("Phân Tán Thất Bại Rồi");
+                //MessageBox.Show("Phân Tán Thất Bại Rồi");
             }
 
         }

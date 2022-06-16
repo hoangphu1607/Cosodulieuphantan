@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.column_clk = new System.Windows.Forms.ComboBox();
             this.table_clk = new System.Windows.Forms.ComboBox();
@@ -49,6 +50,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.column_clk);
             this.groupBox3.Controls.Add(this.table_clk);
@@ -68,6 +70,17 @@
             this.groupBox3.Text = "Liên Kết Với Bảng";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(537, 213);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 44);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Auto";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -85,6 +98,7 @@
             this.column_clk.Name = "column_clk";
             this.column_clk.Size = new System.Drawing.Size(212, 37);
             this.column_clk.TabIndex = 15;
+            this.column_clk.SelectedIndexChanged += new System.EventHandler(this.column_clk_SelectedIndexChanged);
             // 
             // table_clk
             // 
@@ -164,6 +178,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowDrop = true;
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -235,5 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

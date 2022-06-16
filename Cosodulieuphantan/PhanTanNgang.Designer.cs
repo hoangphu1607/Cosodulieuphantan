@@ -111,6 +111,7 @@
             this.button3.TabIndex = 16;
             this.button3.Text = "test";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label5
@@ -154,6 +155,7 @@
             this.bieuthuc.Name = "bieuthuc";
             this.bieuthuc.Size = new System.Drawing.Size(121, 37);
             this.bieuthuc.TabIndex = 12;
+            this.bieuthuc.SelectedIndexChanged += new System.EventHandler(this.bieuthuc_SelectedIndexChanged);
             // 
             // columns
             // 
