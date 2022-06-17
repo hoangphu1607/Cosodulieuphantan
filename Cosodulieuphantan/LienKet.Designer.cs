@@ -44,6 +44,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.dieukien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -184,7 +185,8 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewTextBoxColumn2,
+            this.dieukien});
             this.dataGridView2.Location = new System.Drawing.Point(22, 305);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
@@ -213,6 +215,12 @@
             this.button1.Text = "Phân Tán";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dieukien
+            // 
+            this.dieukien.HeaderText = "Điều Kiện";
+            this.dieukien.MinimumWidth = 6;
+            this.dieukien.Name = "dieukien";
             // 
             // LienKet
             // 
@@ -251,5 +259,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dieukien;
     }
 }

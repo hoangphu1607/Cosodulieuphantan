@@ -52,7 +52,6 @@
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.listDB);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btn_test_conn);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
@@ -100,17 +99,18 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(362, 192);
+            this.button1.Location = new System.Drawing.Point(598, 217);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 36);
             this.button1.TabIndex = 15;
             this.button1.Text = "Dữ Liệu Server";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btn_test_conn
             // 
-            this.btn_test_conn.Location = new System.Drawing.Point(204, 192);
+            this.btn_test_conn.Location = new System.Drawing.Point(256, 189);
             this.btn_test_conn.Name = "btn_test_conn";
             this.btn_test_conn.Size = new System.Drawing.Size(130, 36);
             this.btn_test_conn.TabIndex = 2;
@@ -211,6 +211,7 @@
             this.ClientSize = new System.Drawing.Size(762, 450);
             this.Controls.Add(this.kieu_phan_tan);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.button1);
             this.Name = "ChonKieuPhanTan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChonKieuPhanTan";

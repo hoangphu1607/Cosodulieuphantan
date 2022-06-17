@@ -39,7 +39,7 @@ namespace Cosodulieuphantan
             port = "3306";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";PORT="+port+";";
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";PORT="+port+ "; default command timeout=120";
 
             connection = new MySqlConnection(connectionString);
         }
@@ -60,7 +60,7 @@ namespace Cosodulieuphantan
             port = "3306";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";PORT=" + port + ";";
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";PORT=" + port + "; default command timeout=120";
 
             connection = new MySqlConnection(connectionString);
         }

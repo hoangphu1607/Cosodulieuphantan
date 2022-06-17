@@ -54,7 +54,7 @@ namespace Cosodulieuphantan
             string table1 = table_lk.SelectedValue.ToString() + "." + column_lk.SelectedValue.ToString();
             string table2 = table_clk.SelectedValue.ToString() + "." + column_clk.SelectedValue.ToString();
 
-            this.dataGridView2.Rows.Add(table1, table2);
+            this.dataGridView2.Rows.Add(table1, table2,"");
         }
 
         private void table_lk_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,12 +130,22 @@ namespace Cosodulieuphantan
                 List<string> list = new List<string>();
                 foreach (DataGridViewRow row in dataGridView2.Rows)
                 {
+                int k = 1;
+                string where = "";
                     foreach (DataGridViewCell cell in row.Cells)
                     {
-                        value = cell.Value.ToString();
-                        string[] arrListStr = value.Split('.');
-                        list.Add(arrListStr[0]);
-                        list.Add(arrListStr[1]);
+                        if(k == 3) // cột điều kiện
+                        {
+                            where = cell.Value.ToString();
+                    }
+                        else
+                        {
+                            value = cell.Value.ToString();
+                            string[] arrListStr = value.Split('.');
+                            list.Add(arrListStr[0]);
+                            list.Add(arrListStr[1]);
+                            k++;
+                        }                        
                     }
                     //Lấy cột của bảng cần phân tán thành list
                     connect.OpenConnection();
@@ -154,14 +164,22 @@ namespace Cosodulieuphantan
                         }else
                         select_table += list[2] + "." + data[i]+",";
                     }
+                if (where.Equals(""))
+                {
+                    que = "SELECT DISTINCT " + select_table + " into " + list[2] + " from OPENQUERY(ConnectLan, " +
+                    "'SELECT * FROM quanlyhaisan." + list[2] + "') " + list[2] + "," + list[0] + " where " + list[0] + "." + list[1] + " = " + list[2] + "." + list[3] + "";
 
-                    que = "SELECT DISTINCT " + select_table + " into " + list[2] +" from OPENQUERY(ConnectLan, " +
-                        "'SELECT * FROM quanlyhaisan." + list[2]+ "') " + list[2] + "," + list[0] + " where " + list[0]+"."+ list[1] + " = "+list[2]+ "." + list[3] + "";
-                    //list[2] = bang duoc phan tan
-                    //list[0] = bang dieu kien khi where
-                    //list[1] = cột khóa chính của list[0]
-                    //list[3] = cột khóa chính của list[2]
-                    con.openConn();
+                }
+                else
+                {
+                    que = "SELECT DISTINCT " + select_table + " into " + list[2] + " from OPENQUERY(ConnectLan, " +
+                    "'SELECT * FROM quanlyhaisan." + list[2] + "') " + list[2] + "," + list[0] + " where " + list[0] + "." + list[1] + " = " + list[2] + "." + list[3] + " AND " + where +"";
+                }
+                //list[2] = bang duoc phan tan
+                //list[0] = bang dieu kien khi where
+                //list[1] = cột khóa chính của list[0]
+                //list[3] = cột khóa chính của list[2]
+                con.openConn();
                     con.executeUpdate(que);
                     con.closeConn();
 
